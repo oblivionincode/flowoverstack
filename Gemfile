@@ -13,6 +13,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'bcrypt'
+gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 # gem 'bootstrap-sass'
 
 group :development, :test do
