@@ -1,0 +1,71 @@
+<%- model_class = Question -%>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3><%=t '.title', :default => @question.title %></h3><br>
+    <%= @question.user.email %> post <%= time_ago_in_words(@question.created_at) %> ago.
+  </div>
+  <div class="panel-body"><%= t '.content', :default => @question.content %></div>
+</div>
+
+<% if current_user.present? && @question.user_id == current_user.id %>
+<div style="text-align: right;">
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_question_path(@question), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              question_path(@question),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
+<% end %>
+<br>
+<% if @answers.size > 0 %>
+  <div class="alert alert-success" role="alert">There have <%= @answers.size %> answers for this question.</div>
+<% else %>
+  <div class="alert alert-danger" role="alert">There have no answers for this question, please add your answer to help the questioner.</div>
+<% end %>
+
+<br>
+<hr>
+<% @answers.each do |answer| %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= answer.user.email %> post <%= time_ago_in_words(answer.created_at) %> ago.
+  </div>
+  <div class="panel-body">
+    <%= answer.content %>
+    <% if answer.user == current_user %>
+      <%= link_to 'Edit', edit_answer_path(answer), :class => "pull-right" %>
+    <% end %>
+    <hr>
+  </div>
+</div>
+<% end %>
+
+<% if current_user.present? %>
+  <%= form_for @answer, :html => { :class => "form-horizontal question" } do |f| %>
+  <div class="form-group container">
+    <%= f.label :content, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :content, :size => "20x10", :class => 'form-control' %>
+    </div>
+    <%= f.hidden_field :question_id, :value => @question.id %>
+    <%=f.error_span(:content) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
+  </div>
+  <% end %>
+<% else %>
+<div class="text-center">
+  <h3>To post your answer, please<h3>
+  <ul class="navbar-form">
+    <%= link_to (button_tag "Sign up", type: 'button', :class => 'btn btn-default'), signup_path %>
+    <%= link_to (button_tag "Sign in", type: 'button', :class => 'btn btn-default'), login_path %>
+  </ul>
+</div>
+<% end %>
+

@@ -1,6 +1,5 @@
-<div class="center jumbotron">
-  <h1>All Questions</h1>
-  <ul class="list-group">
+<h1>All Questions</h1>
+<ul class="list-group">
     <% @questions.each do |question| %>
       <div class="panel panel-primary">
         <div class="panel-heading">
@@ -14,11 +13,5 @@
           Post <%= time_ago_in_words(question.created_at) %> ago.
         </div>
       </div>
-    <% end %>
-  </ul>
-
-
-
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
-
+  <% end %>
+</ul>

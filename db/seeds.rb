@@ -14,3 +14,10 @@ User.create!(name:  "Example User",
                password:              password,
                password_confirmation: password)
 end
+# Generate Questions for a subset of users.
+users = User.order(:created_at).take(6)
+50.times do
+  title = Faker::Lorem.sentence(word_count: 5)
+  content = Faker::Lorem.sentence(word_count: 20)
+  users.each { |user| user.questions.create!(title: title, content: content) }
+end

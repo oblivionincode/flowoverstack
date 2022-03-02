@@ -1,0 +1,27 @@
+<%- model_class = Question -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<ul class="list-group">
+    <% @questions.each do |question| %>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <a href="<%=question_path(question) %>">
+            <h3 class="panel-title"><%=  question.title %></h3>
+          </a>
+        </div>
+        <div class="panel-body">
+          <%= question.content %>
+          <hr>
+          Post <%= time_ago_in_words(question.created_at) %> ago
+        </div>
+      </div>
+  <% end %>
+</ul>
+
+<nav aria-label="...">
+  <ul class="pager">
+    <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
+    <li class="next"><a href="questions?search=<%=params[:search]%>"> Newer <span aria-hidden="true">&rarr;</span></a></li>
+  </ul>
+</nav>

@@ -1,4 +1,10 @@
 class User < ApplicationRecord
+  has_many :Questions, dependent: :destroy
+  has_many :questions
+  has_many :answers
+  acts_as_voter
+
+
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   validates :name,  presence: true, length: { maximum: 50 }
@@ -40,7 +46,6 @@ class User < ApplicationRecord
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
-  # Forgets a user.
   def forget
     update_attribute(:remember_digest, nil)
   end
