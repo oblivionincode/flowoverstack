@@ -1,6 +1,7 @@
 class Question < ApplicationRecord
   belongs_to :user
   has_many :answers
+  has_many :comments, as: :commentable
   scope :latest ,->{order('updated_at desc')}
 
   def self.search(search)

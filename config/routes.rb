@@ -9,17 +9,19 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
-resources :users
-  resources :answers
-  resources :questions
+  resources :users
+  resources :questions do
+    resources :comments, module: :questions
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
-resources :posts do
+    end
+resources :answers do
   member do
     patch "upvote", to: "answers#upvote"
     patch "downvote", to: "answers#downvote"
   end
+
+  resources :comments, module: :answers
 end
-  end
+
 
 

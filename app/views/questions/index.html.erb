@@ -1,21 +1,16 @@
 <%- model_class = Question -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
-<ul class="list-group">
+  <h1><%=t '.title'%></h1>
+<ul>
     <% @questions.each do |question| %>
-      <div class="panel panel-primary">
-        <div class="panel-heading">
           <a href="<%=question_path(question) %>">
-            <h3 class="panel-title"><%=  question.title %></h3>
+            <h3><%=  question.title %></h3>
           </a>
-        </div>
-        <div class="panel-body">
+
           <%= question.content %>
           <hr>
           Post <%= time_ago_in_words(question.created_at) %> ago
-        </div>
-      </div>
+
+
   <% end %>
 </ul>
 

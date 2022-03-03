@@ -1,6 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-        <%= link_to "FlowOverStack", root_path, id: "logo" %>
+    <a class="navbar-brand" href="#"><%= link_to "FlowOverStack", root_path, id: "logo" %></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -14,7 +13,7 @@
               </form>
 
         <li class="nav-item">
-        <%= link_to "Help", help_path %>
+        <a class="nav-link"><%= link_to "Help", help_path %><help></a>
         </li>
         <% if logged_in? %>
         <li><%= link_to "Users", users_path %></li>

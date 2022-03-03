@@ -15,13 +15,11 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bcrypt'
 gem 'faker'
 gem 'will_paginate'
-gem 'bootstrap-will_paginate'
-gem 'twitter-bootstrap-rails'
 
 gem 'acts_as_votable'
 
 
-# gem 'bootstrap-sass'
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
