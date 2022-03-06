@@ -5,7 +5,7 @@
        <h6><%= answer.question_id %></h6>
 <%= render partial: "comments/index", locals: {commentable: @answer} %>
       <td><%= render 'answers/upvote_link/', answer: answer%></td>
-      <td><%= render 'answers/like_count/', answer: answer %></tr>
+      <td><%= render 'answers/like_count/', answer: answer %></td>
     <td><%= render 'answers/downvote_link', answer: answer %></td>
         <h6><%= link_to 'Show', answer %></h6>
 

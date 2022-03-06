@@ -43,39 +43,32 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     @answer.user_id = current_user.id
 
-    respond_to do |format|
       if @answer.save
-        format.html { redirect_to @answer.question, notice: 'Answer was successfully created.' }
+        redirect_to @answer.question, notice: 'Answer was successfully created.'
       else
-        format.html { render :new }
+        render :new
       end
-    end
   end
 
   def update
-    respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to @answer.question, notice: 'Answer was successfully updated.' }
+        redirect_to @answer.question, notice: 'Answer was successfully updated.'
       else
-        format.html { render :edit }
+        render :edit
       end
-    end
   end
 
   def destroy
     @answer.destroy
-    respond_to do |format|
-      format.html { redirect_to @question, notice: 'Answer was successfully destroyed.' }
-    end
+      redirect_to @question, notice: 'Answer was successfully destroyed.'
+
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_answer
     @answer = Answer.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def answer_params
     params.require(:answer).permit(:content, :user_id, :question_id)
   end

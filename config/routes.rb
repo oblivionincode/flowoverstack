@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  root 'questions#index'
   get '/help',    to: 'static_pages#help'
   get '/about',  to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   get '/login',    to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+  get 'tags/:tag', to: 'questions#show', as: :tag
+
+
+
 
   resources :users
   resources :questions do

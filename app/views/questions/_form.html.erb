@@ -4,7 +4,12 @@
       <%= f.text_field :title, :class => 'form-control' %>
         <h5>content</h5>
       <%= f.text_area :content, :size => "20x10", :class => 'form-control' %>
-      <%= f.submit nil, :class => 'btn btn-primary' %>
+  <div class="field">
+    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+    <%= f.text_field :tag_list %>
+  </div>
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+
 
 <% end %>
 
