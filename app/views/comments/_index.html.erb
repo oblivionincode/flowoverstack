@@ -1,0 +1,10 @@
+<h3>Comments: </h3>
+<br>
+
+<%= @commentable.comments.count %>
+<% commentable.comments.each do |comment| %>
+  <%= comment.created_at.strftime('%d-%m-%Y %H:%m') %>
+  <%= link_to "Destroy", [@commentable, comment], method: :delete %>
+  <%= simple_format(comment.content) %>
+  <br>
+<% end %>

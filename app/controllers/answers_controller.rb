@@ -28,6 +28,8 @@ class AnswersController < ApplicationController
   end
 
   def show
+    @commentable = @answer
+    @comment = Comment.new
   end
 
   def new

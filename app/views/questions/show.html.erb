@@ -17,8 +17,8 @@
 </div>
 <% end %>
 <hr>
-<%= render @comments, locals: {commentable: @question} %>
-<%= render 'comments/form', locals: {commentable: @question} %>
+<%= render template: "comments/new" %>
+<%= render partial: "comments/index", locals: {commentable: @question} %>
 
 
 
@@ -37,29 +37,18 @@
 
 <% if current_user.present? %>
   <%= form_for @answer, :html => { :class => "form-horizontal question" } do |f| %>
-  <div class="form-group container">
     <%= f.label :content, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
       <%= f.text_area :content, :size => "20x10", :class => 'form-control' %>
-    </div>
     <%= f.hidden_field :question_id, :value => @question.id %>
-    <%=f.error_span(:content) %>
-  </div>
 
-  <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>
-    </div>
-  </div>
   <% end %>
 <% else %>
-<div class="text-center">
   <h3>To post your answer, please<h3>
   <ul class="navbar-form">
     <%= link_to (button_tag "Sign up", type: 'button', :class => 'btn btn-default'), signup_path %>
     <%= link_to (button_tag "Sign in", type: 'button', :class => 'btn btn-default'), login_path %>
   </ul>
-</div>
 <% end %>
 
 

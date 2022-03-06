@@ -4,10 +4,10 @@ one:
   commentable_type: MyString
   content: MyString
   commentable_id: 1
-  resources: 
+  user_id: 1
 
 two:
   commentable_type: MyString
   content: MyString
   commentable_id: 1
-  resources: 
+  user_id: 1

@@ -3,6 +3,7 @@
       <p><%= answer.content %></td></p>
       <h6><%= answer.user_id %></h6>
        <h6><%= answer.question_id %></h6>
+<%= render partial: "comments/index", locals: {commentable: @answer} %>
       <td><%= render 'answers/upvote_link/', answer: answer%></td>
       <td><%= render 'answers/like_count/', answer: answer %></tr>
     <td><%= render 'answers/downvote_link', answer: answer %></td>
@@ -10,6 +11,8 @@
 
     <h6><%= link_to 'Edit', edit_answer_path(answer) %></h6>
     <h6><%= link_to 'Destroy', answer, method: :delete, data: { confirm: 'Are you sure?' } %></h6>
+
+
   <hr>
 
 

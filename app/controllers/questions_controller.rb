@@ -18,10 +18,15 @@ class QuestionsController < ApplicationController
     @answer = Answer.new
     @answers = Answer.where(question_id: @question.id)
 
+    @commentable = @question
+    @comment = Comment.new
+
     respond_to do |format|
       format.html # show.html.erb
     end
   end
+
+
 
   def new
     @question = Question.new

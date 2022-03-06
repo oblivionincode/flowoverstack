@@ -15,8 +15,8 @@
   <%= @answer.question_id %>
 </p>
 
-<%= render @comments, locals: {commentable: @answers} %>
-<%= render 'comments/form', locals: {commentable: @answers} %>
+<%= render template: "comments/new" %>
+<%= render partial: "comments/index", locals: {commentable: @answer} %>
 
 
 <%= link_to 'Edit', edit_answer_path(@answer) %> |
