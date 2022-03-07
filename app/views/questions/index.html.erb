@@ -17,6 +17,12 @@
 
 <%- model_class = Question -%>
 
+<div id="tag_cloud">
+  <% tag_cloud Question.tag_counts, %w[s m l] do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</div>
+
 <% @questions.each do |question| %>
 
 <div class="container main-section border">

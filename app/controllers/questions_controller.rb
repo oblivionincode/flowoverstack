@@ -2,8 +2,12 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy]
 
   def index
+    if params[:tag]
+      @questions = Question.tagged_with(params[:tag])
+    else
     @questions = Question.search(params[:search]).latest
     @user = current_user
+    end
 
   end
 
