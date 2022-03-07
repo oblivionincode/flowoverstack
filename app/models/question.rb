@@ -1,8 +1,8 @@
 class Question < ApplicationRecord
   belongs_to :user
-  has_many :answers
+  has_many :answers, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
     scope :latest ,->{order('updated_at desc')}

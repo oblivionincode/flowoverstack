@@ -60,7 +60,7 @@ class AnswersController < ApplicationController
 
   def destroy
     @answer.destroy
-      redirect_to @question, notice: 'Answer was successfully destroyed.'
+      redirect_to @answer.question, notice: 'Answer was successfully destroyed.'
 
   end
 

@@ -53,21 +53,19 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-      redirect_to questions_url, notice: 'Question was successfully destroyed.'
+      redirect_to root_path, notice: 'Question was successfully destroyed.'
     end
 
 
   private
 
   def set_question
-    if params[:tag]
-      @question = Question.tagged_with(params[:tag])
-    else
+
     @question = Question.find(params[:id])
-    end
+
   end
 
   def question_params
-    params.require(:question).permit(:title, :content, :tag_list)
+    params.require(:question).permit(:title, :content, :tag_list, :search)
   end
 end

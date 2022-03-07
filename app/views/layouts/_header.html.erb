@@ -1,44 +1,48 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><%= link_to "FlowOverStack", root_path, id: "logo" %></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class: "navbar-brand">
+      <%= link_to image_tag("Stack_Overflow_icon.svg", alt: "logo", class: "d-inline-block align-text-top", width: "40"), "/" %>
+      <%= link_to "FlowOverStack", root_path, id: "logo",class: "navbar-brand mb-0 h1" %>
+    </a>
+      <form class="d-flex">
+      <%= text_field_tag :search, params[:search], class: "form-control me-2" %>
+      <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
 
-              <form class="d-flex">
-               <%= text_field_tag :search, params[:search], :class => "form-control" %>
+      <% if logged_in? %>
+      <form class="d-flex">
+      <li><%= link_to (button_tag "New Question", type: 'button', class: "btn btn-outline-primary "), new_question_path %></li>
+      </form>
+      <% end %>
+      <% unless logged_in? %>
+      <form class="justify-content-start">
+          <%= link_to "Sign in", login_path , class: "btn btn-sm btn-outline-secondary me-2" %>
+          <%= link_to "Sign up", signup_path , class: "btn btn-sm btn-outline-secondary me-2" %>
+      </form>
+      <% end %>
+                <% if logged_in? %>
+                  <div class="dropdown ">
+                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    Setting
+                  </a>
 
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><%= link_to "Profile", current_user, class: "dropdown-item" %></li>
+                    <li><%= link_to 'Edit Account', edit_user_path(current_user), class: "dropdown-item" %></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><%= link_to 'Log out', logout_path, method: :delete, class: "dropdown-item" %></li>
 
-        <li class="nav-item">
-        <a class="nav-link"><%= link_to "Help", help_path %><help></a>
-        </li>
-        <% if logged_in? %>
-        <li><%= link_to "Users", users_path %></li>
-        <li><%= link_to (button_tag "New Question", type: 'button', :class => 'btn btn-default'), new_question_path %></li>
+                  </ul>
+                  </div>
+                <% end %>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Account
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><%= link_to "Profile", current_user %></li>
-            <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><%= link_to "Log out", logout_path, method: :delete %></li>
-          </ul>
-        </li>
-        <% else %>
-        <li><%= link_to "Log in", login_path %></li>
-        <% end %>
-
-      </ul>
-
-    </div>
-  </div>
+   </div>
 </nav>
+
+
+
+
+
 
 
 

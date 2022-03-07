@@ -1,0 +1,11 @@
+<% @questions.each do |question| %>
+  <a href="<%=question_path(question) %>">
+    <h3><%=  question.title %></h3>
+  </a>
+  <%= question.content %>
+  <br>
+  <%= raw question.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+
+  <hr>
+  Post <%= time_ago_in_words(question.created_at) %> ago.
+<% end %>

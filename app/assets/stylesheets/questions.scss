@@ -1,3 +1,21 @@
 // Place all the styles related to the questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+body{
+  background-color: #EFF8FF;
+}
+.main-section{
+  padding:15px;
+  background-color: #fff;
+}
+.list-inline-item{
+  border-right:1px solid black;
+  padding-right:6px;
+  line-height:0.4em;
+}
+.list-inline-item:last-child{
+  border:none;
+}
+.post-detail ul{
+  margin-top:15px;
+}
