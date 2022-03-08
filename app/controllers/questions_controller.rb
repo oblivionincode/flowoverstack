@@ -16,7 +16,8 @@ class QuestionsController < ApplicationController
 
     @question = Question.find(params[:id])
     @answer = Answer.new
-    @answers = Answer.where(question_id: @question.id)
+    @answers = Answer.where(question_id: @question.id).order(cached_votes_score: :desc)
+
 
     @commentable = @question
     @comment = Comment.new

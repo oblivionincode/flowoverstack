@@ -1,11 +1,14 @@
-<%= form_for [@commentable, @comment] do |f| %>
+<%= form_for [@commentable, @comment], :html => { :class => "form-horizontal question" } do |f| %>
   <% if @comment.errors.any? %>
-    <% @comment.errors.each do |error| %>
-      <%= error.full_message %>
-    <% end %>
+    <h2><%= @comment.errors.count%> error prohibited this answer from being saved:</h2>
+    <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
   <% end %>
-
-  <%= f.label :content %>
-  <%= f.text_area :content %>
+  <%= f.text_area :content, class: 'form-control' %>
   <%= f.submit %>
 <% end %>
+<br>
+

@@ -1,12 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
 
-
-  def index
-    @answers = Answer.all.order(cached_votes_score: :desc)
-  end
-
-
   def upvote
     @answers = Answer.find(params[:id])
     if current_user.voted_up_on? @answers
@@ -14,7 +8,6 @@ class AnswersController < ApplicationController
     else
       @answers.upvote_by current_user
     end
-    render "vote.js.erb"
   end
 
   def downvote
@@ -24,7 +17,6 @@ class AnswersController < ApplicationController
     else
       @answers.downvote_by current_user
     end
-    render "vote.js.erb"
   end
 
   def show

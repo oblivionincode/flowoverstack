@@ -1,51 +1,24 @@
-<p id="notice"><%= notice %></p>
 
-      <p><%= answer.content %></td></p>
-      <h6><%= answer.user_id %></h6>
-       <h6><%= answer.question_id %></h6>
-    <%= render partial: "comments/index", locals: {commentable: @answer} %>
+    <h6>Created by <%= answer.user.name %></h6>
+    <%= time_ago_in_words(answer.created_at)%>
+    <p><%= answer.content %></p>
+    <%#= render template: "comments/new" %>
+    <%#= render partial: "comments/index", locals: {commentable: @answer} %>
+
 <br>
+      <% if logged_in? %>
       <%= render 'answers/upvote_link/', answer: answer%>
-<br>
-      <%= render 'answers/like_count/', answer: answer %>
+       <%= answer.cached_votes_score %>
 <br>
     <%= render 'answers/downvote_link', answer: answer %>
+
+      <% else %>
+  <%= answer.cached_votes_score %> upvotes
+
+  <% end %>
         <h6><%= link_to 'Show', answer %></h6>
-
-    <h6><%= link_to 'Edit', edit_answer_path(answer) %></h6>
-    <h6><%= link_to 'Destroy', answer, method: :delete, data: { confirm: 'Are you sure?' } %></h6>
-
-
-  <hr>
+ <hr>
 
 
 <br>
 
-
-<div class="container">
-  <div class="d-flex justify-content-center row">
-    <div class="d-flex flex-column">
-      <div class="coment-bottom bg-white p-2 px-4">
-        <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38"><input type="text" class="form-control mr-3" placeholder="Add comment"><button class="btn btn-primary" type="button">Comment</button></div>
-        <div class="commented-section mt-2">
-          <div class="d-flex flex-row align-items-center commented-user">
-            <h5 class="mr-2"><%= answer.user_id %></h5><span class="dot mb-1"></span><span class="mb-1 ml-2"><%= time_ago_in_words(answer.created_at) %></span>
-          </div>
-          <div class="comment-text-sm"><span><%= answer.content %></span></div>
-          <div class="reply-section">
-            <div class="d-flex">
-              <br>
-              <%= render 'answers/upvote_link/', answer: answer%>
-              <br>
-              <%= render 'answers/like_count/', answer: answer %>
-              <br>
-              <%= render 'answers/downvote_link/', answer: answer %>
-              <br>
-              <h6 class="ml-2 mt-1"><%= link_to 'Show', answer %></h6>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

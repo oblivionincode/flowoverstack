@@ -1,16 +1,18 @@
-<%= form_for @question, :html => { :class => "form-horizontal question" } do |f| %>
-
-        <h5>title</h5>
-      <%= f.text_field :title, :class => 'form-control' %>
-        <h5>content</h5>
-      <%= f.text_area :content, :size => "20x10", :class => 'form-control' %>
-  <div class="field">
-    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
-    <%= f.text_field :tag_list %>
-  </div>
+<%= form_for @question  do |f| %>
+  <% if @question.errors.any? %>
+    <h2><%= @question.errors.count%> error prohibited this answer from being saved:</h2>
+    <ul>
+      <% @question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <h5>Title</h5>
+  <%= f.text_field :title, class: 'form-control' %>
+  <h5>Content</h5>
+  <%= f.text_area :content, size: "20x10", class: 'form-control' %>
+  <%= f.label :tag_list, "Tags (separated by commas)" %>
+  <%= f.text_field :tag_list %><br>
   <%= f.submit nil, :class => 'btn btn-primary' %>
-
-
 <% end %>
-
 

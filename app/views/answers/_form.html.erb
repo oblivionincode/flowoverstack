@@ -1,7 +1,6 @@
 <%= form_for answer, :html => { :class => "form-horizontal question" } do |f| %>
   <% if answer.errors.any? %>
-      <h2><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
-
+      <h2><%= answer.errors.count%> error prohibited this answer from being saved:</h2>
       <ul>
       <% answer.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -9,12 +8,10 @@
       </ul>
   <% end %>
 
-    <%= f.label :content, :class => 'control-label col-lg-2' %>
-      <%= f.text_area :content, :size => "20x10", :class => 'form-control' %>
-    <%#=f.error_span(:content) %>
 
+  <%= f.label :content, :class => 'control-label col-lg-2' %>
+  <%= f.text_area :content, :size => "20x10", :class => 'form-control' %>
   <%= f.hidden_field :user_id %>
   <%= f.hidden_field :question_id %>
-
-      <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= f.submit nil, :class => 'btn btn-primary' %>
 <% end %>

@@ -1,11 +1,9 @@
 <%= content_tag "div", id: "downvote-#{answer.id}" do %>
-  <%= link_to downvote_answer_path(answer), method: :patch, remote: true, data: { disable_with: "voting..." } do %>
+  <%= link_to downvote_answer_path(answer.id), method: :patch, remote: true, data: { disable_with: "voting..." } do %>
     <% if current_user.voted_down_on? answer %>
       <i class="fa fa-chevron-down" style="color: red;"></i>
-      unvote
     <% else %>
       <i class="fa fa-chevron-down"></i>
-      downvote
     <% end %>
   <% end %>
 <% end %>

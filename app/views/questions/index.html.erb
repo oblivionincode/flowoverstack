@@ -1,27 +1,3 @@
-<!--<div class="mx-auto" style="width: 200px;">-->
-<!--  <h2>All Questions</h2>-->
-<!--</div>-->
-
-<%# @questions.each do |question| %>
-
-<!--  <a href="<%#=question_path(question) %>">-->
-<!--    <h3><%#=  question.title %></h3>-->
-<!--  </a>-->
-  <%#= question.content %>
-<!--  <br>-->
-  <%#= raw question.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
-<!--  Post <%#= time_ago_in_words(question.created_at) %> ago.-->
-<!--  <hr>-->
-<%# end %>
-<!--</ul>-->
-
-<%- model_class = Question -%>
-
-<div id="tag_cloud">
-  <% tag_cloud Question.tag_counts, %w[s m l] do |tag, css_class| %>
-    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-  <% end %>
-</div>
 
 <% @questions.each do |question| %>
 

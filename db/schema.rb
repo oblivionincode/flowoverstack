@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_06_141127) do
+ActiveRecord::Schema.define(version: 2022_03_07_212432) do
 
   create_table "answers", force: :cascade do |t|
     t.text "content"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2022_03_06_141127) do
     t.integer "commentable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
   end
 
@@ -91,6 +92,7 @@ ActiveRecord::Schema.define(version: 2022_03_06_141127) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "comments", "users"
   add_foreign_key "questions", "users"
   add_foreign_key "taggings", "questions"
   add_foreign_key "taggings", "tags"

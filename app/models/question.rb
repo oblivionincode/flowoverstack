@@ -4,12 +4,16 @@ class Question < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
+  validates :content, presence: true
+  validates :title, presence: true
 
-    scope :latest ,->{order('updated_at desc')}
+
+
+  scope :latest ,->{order('updated_at desc')}
 
   def self.search(search)
     if search
-      Question.where(['title LIKE ? OR content LIKE ?', "%#{search}%", "%#{search}%"])
+      Question.where('title LIKE ? OR content LIKE ?', "%#{search}%", "%#{search}%")
     else
       Question.all
     end
