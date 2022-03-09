@@ -20,7 +20,7 @@ class Question < ApplicationRecord
   end
 
   def self.tagged_with(name)
-    Tag.find_by_name!(name).questions
+    Tag.find_by_name(name)&.questions
   end
 
   def self.tag_counts
