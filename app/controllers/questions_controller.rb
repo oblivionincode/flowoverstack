@@ -1,12 +1,13 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
 
   def index
     if params[:tag]
       @questions = Question.tagged_with(params[:tag])
     else
-    @questions = Question.search(params[:search]).latest
-    @user = current_user
+    @questions = Question.search(params[:search])
     end
 
   end
@@ -64,10 +65,17 @@ class QuestionsController < ApplicationController
 
   private
 
-  def set_question
 
+  def correct_user
     @question = Question.find(params[:id])
+    redirect_to @question, notice: 'Unauthorized action' unless current_user?(@question.user)
+  end
 
+  def set_question
+    @question = Question.find(params[:id])
+  rescue
+    flash[:notice] = "ERROR"
+    redirect_to root_url
   end
 
   def question_params

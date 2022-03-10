@@ -1,24 +1,23 @@
 
-    <h6>Created by <%= answer.user.name %></h6>
-    <%= time_ago_in_words(answer.created_at)%>
-    <p><%= answer.content %></p>
-    <%#= render template: "comments/new" %>
-    <%#= render partial: "comments/index", locals: {commentable: @answer} %>
+      <div class="container p-3 mb-2 bg-light text-dark">
 
-<br>
-      <% if logged_in? %>
-      <%= render 'answers/upvote_link/', answer: answer%>
-       <%= answer.cached_votes_score %>
-<br>
-    <%= render 'answers/downvote_link', answer: answer %>
-
-      <% else %>
-  <%= answer.cached_votes_score %> upvotes
-
-  <% end %>
-        <h6><%= link_to 'Show', answer %></h6>
- <hr>
-
-
-<br>
+      <div class="row">
+        <div class="col col-lg-1">
+          <% if logged_in? %>
+            <%= render 'answers/upvote_link/', answer: answer%>
+            <%= render 'answers/like_count/', answer: answer %>
+            <%= render 'answers/downvote_link', answer: answer %>
+          <% else %>
+            <%= answer.cached_votes_score %> upvotes
+          <% end %>
+        </div>
+        <div class="col">
+          <h6><u>Posted by <%= answer.user.name %>
+            <%= time_ago_in_words(answer.created_at)%> ago</u></h6>
+          <p><%= answer.content %></p>
+          <h6 style="text-align: right;"><%= link_to 'Show', answer %></h6>
+        </div>
+      </div>
+      <hr>
+    </div>
 

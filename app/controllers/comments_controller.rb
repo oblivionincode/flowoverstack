@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_commentable
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
 
   def new
     @comment = Comment.new
@@ -27,6 +29,12 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def correct_user
+    @comment = Comment.find(params[:id])
+    redirect_to @commentable, notice: 'Unauthorized action' unless current_user?(@comment.user)
+  end
+
 
   def comment_params
     params.require(:comment).permit(:content)

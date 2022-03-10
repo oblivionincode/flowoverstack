@@ -1,2 +1,54 @@
  <h1><%= @user.name %></h1>
 
+
+ <% @questions&.each do |question| %>
+
+   <div class="container main-section border">
+     <div class="row">
+       <div class="col-lg-12 col-sm-12 col-12">
+         <div class="row">
+           <div class="col-lg-10 col-sm-10 col-7">
+             <a href="<%=question_path(question) %>">
+               <h4 class="text-primary"><%=  question.title %></h4>
+             </a>
+
+             <p>
+               <%= question.content %>
+             </p>
+             <a href="<%=question_path(question) %>">
+               <button class="btn btn-sm btn-dark">Read more</button>
+             </a>
+
+           </div>
+         </div>
+         <div class="row post-detail">
+           <div class="col-lg-12 col-sm-12 col-12">
+             <ul class="list-inline">
+               <li class="list-inline-item">
+                 <i class="fa fa-user" aria-hidden="true"></i> <span><%= question.user.name %></span>
+               </li>
+               <li class="list-inline-item">
+                 <i class="fa fa-calendar" aria-hidden="true"></i> <span>Post <%= time_ago_in_words(question.created_at) %> ago</span>
+               </li>
+               <li class="list-inline-item">
+                 <i class="fa fa-database" aria-hidden="true"></i> <span class="text-info"><%= question.answers.size %> Answers</span>
+               </li>
+               <li class="list-inline-item">
+                 <i class="fa fa-comment" aria-hidden="true"></i> <span class="text-info"><%= question.comments.size %> Comments</span>
+               </li>
+               <li class="list-inline-item">
+                 <i class="fa fa-tags" aria-hidden="true"></i>
+                 <span>Tags:</span>
+                 <%= raw question.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+               </li>
+             </ul>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <br>
+
+ <% end %>
+
+

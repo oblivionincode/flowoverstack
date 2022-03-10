@@ -1,4 +1,4 @@
-<%= form_for answer, :html => { :class => "form-horizontal question" } do |f| %>
+<%= form_with model: answer, :html => { :class => "form-horizontal question" } do |f| %>
   <% if answer.errors.any? %>
       <h2><%= answer.errors.count%> error prohibited this answer from being saved:</h2>
       <ul>

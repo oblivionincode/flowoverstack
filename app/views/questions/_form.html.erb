@@ -1,4 +1,4 @@
-<%= form_for @question  do |f| %>
+<%= form_with model: @question  do |f| %>
   <% if @question.errors.any? %>
     <h2><%= @question.errors.count%> error prohibited this answer from being saved:</h2>
     <ul>

@@ -1,3 +1,4 @@
+<div class="container bg-light">
 <p>
   <strong>Content:</strong>
   <br>
@@ -5,7 +6,7 @@
 </p>
 <%= @answer.cached_votes_score %> upvotes
 <h6>Created by <%= @answer.user.name %> <%= time_ago_in_words(@answer.created_at)%></h6>
-
+<hr>
 <% if logged_in? %>
   <%= render template: "comments/new" %>
 <% end %>
@@ -14,7 +15,6 @@
   <h6><%= link_to 'Edit', edit_answer_path(@answer) %></h6>
   <h6><%= link_to 'Destroy', @answer, method: :delete, data: { confirm: 'Are you sure?' } %></h6>
 <% end %>
-
 <%= render partial: "comments/index", locals: {commentable: @answer} %>
 
-
+</div>

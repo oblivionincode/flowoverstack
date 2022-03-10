@@ -1,5 +1,7 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
 
   def upvote
     @answers = Answer.find(params[:id])
@@ -8,6 +10,8 @@ class AnswersController < ApplicationController
     else
       @answers.upvote_by current_user
     end
+    redirect_back(fallback_location: root_path)
+
   end
 
   def downvote
@@ -17,6 +21,9 @@ class AnswersController < ApplicationController
     else
       @answers.downvote_by current_user
     end
+    redirect_back(fallback_location: root_path)
+
+
   end
 
   def show
@@ -57,8 +64,19 @@ class AnswersController < ApplicationController
   end
 
   private
+
+
+  def correct_user
+    @answer = Answer.find(params[:id])
+    redirect_to @answer, notice: 'Unauthorized action' unless current_user?(@answer.user)
+  end
+
+
   def set_answer
     @answer = Answer.find(params[:id])
+  rescue
+    flash[:notice] = "ERROR"
+    redirect_to root_url
   end
 
   def answer_params

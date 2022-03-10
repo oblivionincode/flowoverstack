@@ -6,8 +6,7 @@ class Question < ApplicationRecord
   has_many :tags, through: :taggings
   validates :content, presence: true
   validates :title, presence: true
-
-
+  validates :user, presence: true
 
   scope :latest ,->{order('updated_at desc')}
 

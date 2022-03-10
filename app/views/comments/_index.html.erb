@@ -1,12 +1,12 @@
-
-<h6><%= @commentable.comments.count %> comments</h6>
-<hr>
+<div class=" container p-3 mb-2 border text-black">
+<h6 class=" border mb-lg-1"><%= @commentable.comments.count %> comments</h6>
 
 <% commentable.comments.each do |comment| %>
   <%= simple_format(comment.content) %>
-    <h6 style='text-align: right'><%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.name %></h6>
+    <h6 style='text-align: right'>Posted <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.name %></h6>
   <% if logged_in? && comment.user_id == current_user.id %>
-      <h6 style='text-align: right'><%= link_to "Destroy", [@commentable, comment], method: :delete %></h6>
+      <h6 style='text-align: right'><%= link_to "Destroy", [@commentable, comment], method: :delete ,class: "btn btn-danger btn-sm"%></h6>
     <%end %>
   <hr>
 <% end %>
+</div>

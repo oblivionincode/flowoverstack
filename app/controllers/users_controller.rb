@@ -10,6 +10,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @questions = Question.where(user_id: @user.id).order(cached_votes_score: :desc)
+
+
   end
 
   def new

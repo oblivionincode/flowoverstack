@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   root 'questions#index'
   get '/help',    to: 'static_pages#help'
   get '/about',  to: 'static_pages#about'
@@ -15,7 +17,6 @@ Rails.application.routes.draw do
   resources :users
   resources :questions do
     resources :comments, only: [:new, :create, :destroy]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
     end
 resources :answers do
 
@@ -27,7 +28,13 @@ resources :answers do
   end
 
 end
-  end
+
+  match '*path' , to: 'application#routing_error'
+
+
+
+
+end
 
 
 
